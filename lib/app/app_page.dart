@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:routefly/routefly.dart';
 
 import 'package:projeto_final_faculdade/routes.dart';
@@ -15,11 +16,15 @@ class _AppPageState extends State<AppPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Center(
-        child: ElevatedButton(
-            onPressed: () => Routefly.push(routePaths.produtos),
-            child: const Text('data')),
+        child: const Icon(
+          Icons.coffee_outlined,
+          size: 60,
+        )
+            .animate(
+              onComplete: (_) => Routefly.navigate(routePaths.home.produtos),
+            )
+            .shake(duration: 1.seconds),
       ),
     );
   }
