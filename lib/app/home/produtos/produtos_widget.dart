@@ -62,7 +62,11 @@ class ProdutosWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  trailing: Image.asset(e.imagem),
+                  trailing: Image.asset(
+                    e.imagem,
+                    cacheHeight: 147,
+                    cacheWidth: 165,
+                  ),
                 ),
                 const Divider(),
               ],
