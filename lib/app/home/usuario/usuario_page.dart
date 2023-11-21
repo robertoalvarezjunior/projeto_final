@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:projeto_final_faculdade/app/home/usuario/usuario_widget.dart';
+
 Route routeBuilder(BuildContext context, RouteSettings settings) {
   return PageRouteBuilder(
     settings: settings,
@@ -14,9 +16,7 @@ class UsuarioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Usuário'),
-      ),
+      body: UsuarioWidget(),
     );
   }
 }
