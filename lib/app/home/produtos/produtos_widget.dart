@@ -1,8 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:projeto_final_faculdade/consts/produtos_const.dart';
 import 'package:projeto_final_faculdade/model/produto_model.dart';
+import 'package:projeto_final_faculdade/view_model/carrinho/carrinho_bloc.dart';
 
 class ProdutosWidget extends StatelessWidget {
   const ProdutosWidget({
@@ -45,7 +48,21 @@ class ProdutosWidget extends StatelessWidget {
                               ),
                               InkWell(
                                 borderRadius: BorderRadius.circular(12),
-                                onTap: () {},
+                                onTap: () {
+                                  ProdutoModel produto = ProdutoModel(
+                                    idProduto: e.idProduto,
+                                    nome: e.nome,
+                                    preco: e.preco,
+                                    descricao: e.descricao,
+                                    imagem: e.imagem,
+                                    tag: e.tag,
+                                  );
+
+                                  context.read<CarrinhoBloc>().add(
+                                        AdicionarItemCarrinhoEvent(
+                                            produto: produto),
+                                      );
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
