@@ -15,3 +15,7 @@ final class RemoverItemCarrinhoEvent extends ICarrinhoEvent {
   final int id;
   const RemoverItemCarrinhoEvent({required this.id});
 }
+
+final class GetItemsCarrinhoEvent extends ICarrinhoEvent {
+  const GetItemsCarrinhoEvent();
+}

@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import 'package:sqflite/sqflite.dart';
 
 import 'package:projeto_final_faculdade/app/home/produtos/produtos_categoria.dart';
 import 'package:projeto_final_faculdade/app/home/produtos/produtos_widget.dart';
 import 'package:projeto_final_faculdade/consts/produtos_const.dart';
+import 'package:projeto_final_faculdade/database/local_database.dart';
+import 'package:projeto_final_faculdade/model/carrinho_model.dart';
 import 'package:projeto_final_faculdade/model/produto_model.dart';
 
 Route routeBuilder(BuildContext context, RouteSettings settings) {
@@ -24,6 +30,8 @@ class _ProdutosPageState extends State<ProdutosPage> {
   final List<GlobalKey> categorias = [GlobalKey(), GlobalKey(), GlobalKey()];
   BuildContext? tabContext;
   late ScrollController scrollController;
+
+  late Database db;
 
   @override
   void initState() {

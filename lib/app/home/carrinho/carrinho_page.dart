@@ -2,9 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:projeto_final_faculdade/app/home/carrinho/carrinho_widget.dart';
 import 'package:projeto_final_faculdade/database/local_database.dart';
+import 'package:projeto_final_faculdade/model/carrinho_model.dart';
+import 'package:projeto_final_faculdade/view_model/carrinho/carrinho_bloc.dart';
 
 Route routeBuilder(BuildContext context, RouteSettings settings) {
   return PageRouteBuilder(
@@ -26,19 +30,29 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
   @override
   void initState() {
     super.initState();
-    () async {
-      db = await LocalDatabase.instance.database;
-      // fazer um teste disso
-      List<Map> list = await db.rawQuery('SELECT * FROM carrinho');
-      log(list.toString());
-      print(list.toString());
-    }();
+
+    context.read<CarrinhoBloc>().add(const GetItemsCarrinhoEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Carrinho')),
+    return BlocBuilder<CarrinhoBloc, ICarrinhoState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: switch (state) {
+            InitialCarrinhoState() => const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ErrorCarrinhoState() => Center(
+                child: Text(state.message),
+              ),
+            LoadedCarrinhoState() => CarrinhoWidget(state: state.produtos),
+            EmptyCarrinhoState() => const Center(
+                child: Text('Carinho vazio'),
+              ),
+          },
+        );
+      },
     );
   }
 }
