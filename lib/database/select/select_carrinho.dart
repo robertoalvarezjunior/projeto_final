@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:sqflite/sqflite.dart';
 
 import 'package:projeto_final_faculdade/database/local_database.dart';

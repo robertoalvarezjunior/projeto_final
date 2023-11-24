@@ -1,13 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:projeto_final_faculdade/app/home/carrinho/carrinho_widget.dart';
-import 'package:projeto_final_faculdade/database/local_database.dart';
-import 'package:projeto_final_faculdade/model/carrinho_model.dart';
 import 'package:projeto_final_faculdade/view_model/carrinho/carrinho_bloc.dart';
 
 Route routeBuilder(BuildContext context, RouteSettings settings) {
@@ -26,7 +22,6 @@ class CarrinhoPage extends StatefulWidget {
 }
 
 class _CarrinhoPageState extends State<CarrinhoPage> {
-  late Database db;
   @override
   void initState() {
     super.initState();

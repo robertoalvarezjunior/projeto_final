@@ -17,6 +17,14 @@ class CarrinhoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text('Finalizar'),
+          ),
+        ],
+      ),
       body: ListView.separated(
         itemBuilder: (context, index) {
           final carrinho = state.produto![index];

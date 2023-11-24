@@ -29,6 +29,7 @@ final class LocalDatabase {
     await db.execute(_usuario);
     await db.execute(_endereco);
     await db.execute(_carrinho);
+    await db.execute(_pedidos);
   }
 
   String get _usuario => '''
@@ -57,6 +58,16 @@ final class LocalDatabase {
   String get _carrinho => '''
     CREATE TABLE carrinho (
       idProduto INTEGER  PRIMARY KEY AUTOINCREMENT,
+      nome TEXT,
+      preco REAL,
+      descricao TEXT,
+      imagem TEXT,
+      tag TEXT
+    );
+  ''';
+  String get _pedidos => '''
+    CREATE TABLE pedidos (
+      idPedido INTEGER  PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       preco REAL,
       descricao TEXT,

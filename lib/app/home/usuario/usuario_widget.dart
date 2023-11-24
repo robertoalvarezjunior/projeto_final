@@ -1,9 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routefly/routefly.dart';
+import 'package:sqflite/sqflite.dart';
+
+import 'package:projeto_final_faculdade/database/local_database.dart';
+import 'package:projeto_final_faculdade/model/usuario_model.dart';
+import 'package:projeto_final_faculdade/view_model/usuario/usuario_bloc.dart';
+import 'package:projeto_final_faculdade/view_model/usuario/usuario_event.dart';
 
 class UsuarioWidget extends StatefulWidget {
-  const UsuarioWidget({super.key});
+  const UsuarioWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<UsuarioWidget> createState() => _UsuarioWidgetState();
@@ -22,6 +34,8 @@ class _UsuarioWidgetState extends State<UsuarioWidget> {
   final GlobalKey<FormState> _formKeyCadastro = GlobalKey<FormState>();
 
   bool verSenhaLogin = false;
+
+  late Database db;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -140,9 +154,22 @@ class _UsuarioWidgetState extends State<UsuarioWidget> {
                                     ),
                                     const SizedBox(height: 10),
                                     ElevatedButton(
-                                      onPressed: () {
+                                      onPressed: () async {
                                         if (_formKeyCadastro.currentState!
                                             .validate()) {
+                                          final usuario = UsuarioModel(
+                                            email: emailCadastroController.text,
+                                            senha: senhaCadastroController.text,
+                                            nome: nomeCadastroController.text,
+                                            numeroTelefone:
+                                                numeroTelefoneCadastroController
+                                                    .text,
+                                          );
+
+                                          context.read<UsuarioBloc>().add(
+                                                CadastrarUsuarioEvent(
+                                                    usuario: usuario),
+                                              );
                                           Routefly.pop(context);
                                         }
                                       },
@@ -161,7 +188,14 @@ class _UsuarioWidgetState extends State<UsuarioWidget> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (_formKeyLogin.currentState!.validate()) {}
+                if (_formKeyLogin.currentState!.validate()) {
+                  context.read<UsuarioBloc>().add(
+                        LoginUsuairoEvent(
+                          email: emailLoginController.text,
+                          senha: senhaLoginController.text,
+                        ),
+                      );
+                }
               },
               child: const Text('Logar'),
             ),
