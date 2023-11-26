@@ -1,13 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routefly/routefly.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:projeto_final_faculdade/database/local_database.dart';
 import 'package:projeto_final_faculdade/model/usuario_model.dart';
 import 'package:projeto_final_faculdade/view_model/usuario/usuario_bloc.dart';
 import 'package:projeto_final_faculdade/view_model/usuario/usuario_event.dart';

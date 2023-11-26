@@ -13,20 +13,22 @@ final class SelectUsuairo {
       db = await LocalDatabase.instance.database;
       List<Map<String, dynamic>> list = await db.rawQuery(
           'SELECT * from usuario WHERE email = "$email" AND senha = "$senha"');
-
+      if (list.isEmpty) {
+        throw Exception("Usuário não encontrado");
+      }
       return UsuarioModel.fromMap(list.first);
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  Future<UsuarioModel?> verifyUsuario() async {
+  Future<List<UsuarioModel?>> verifyUsuario() async {
     try {
       db = await LocalDatabase.instance.database;
       List<Map<String, dynamic>> list =
           await db.rawQuery('SELECT * from usuario');
 
-      return UsuarioModel.fromMap(list.first);
+      return list.map((e) => UsuarioModel.fromMap(e)).toList();
     } catch (e) {
       throw Exception(e);
     }

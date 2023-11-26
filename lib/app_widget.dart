@@ -6,6 +6,8 @@ import 'package:routefly/routefly.dart';
 
 import 'package:projeto_final_faculdade/routes.dart';
 import 'package:projeto_final_faculdade/view_model/carrinho/carrinho_bloc.dart';
+import 'package:projeto_final_faculdade/view_model/endereco/endereco_bloc.dart';
+import 'package:projeto_final_faculdade/view_model/pedido/pedido_bloc.dart';
 import 'package:projeto_final_faculdade/view_model/usuario/usuario_bloc.dart';
 
 class AppWidget extends StatefulWidget {
@@ -18,6 +20,8 @@ class AppWidget extends StatefulWidget {
 class _AppWidgetState extends State<AppWidget> {
   final CarrinhoBloc _carrinhoBloc = CarrinhoBloc();
   final UsuarioBloc _usuarioBloc = UsuarioBloc();
+  final EnderecoBloc _enderecoBloc = EnderecoBloc();
+  final PedidoBloc _pedidoBloc = PedidoBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class _AppWidgetState extends State<AppWidget> {
       providers: [
         BlocProvider(create: (_) => _carrinhoBloc),
         BlocProvider(create: (_) => _usuarioBloc),
+        BlocProvider(create: (_) => _enderecoBloc),
+        BlocProvider(create: (_) => _pedidoBloc),
       ],
       child: MaterialApp.router(
         routerConfig: Routefly.routerConfig(

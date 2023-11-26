@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:projeto_final_faculdade/app/home/usuario/usuario_infos_widget.dart';
 import 'package:projeto_final_faculdade/app/home/usuario/usuario_widget.dart';
 import 'package:projeto_final_faculdade/view_model/usuario/usuario_bloc.dart';
 import 'package:projeto_final_faculdade/view_model/usuario/usuario_event.dart';
@@ -41,9 +42,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
             ErrorUsuarioState() => Center(
                 child: Text(state.message),
               ),
-            LoggedUsuarioState() => const Center(
-                child: Text('Logado'),
-              ),
+            LoggedUsuarioState() => const UsuarioInfosWidget(),
             LoginUsuarioState() => const UsuarioWidget()
           },
         );

@@ -1,14 +1,15 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-class ProdutoModel {
-  int idProduto;
-  String nome;
-  double preco;
-  String descricao;
-  String imagem;
-  String tag;
-  ProdutoModel({
+import 'package:equatable/equatable.dart';
+
+class ProdutoModel extends Equatable {
+  final int? idProduto;
+  final String nome;
+  final double preco;
+  final String descricao;
+  final String imagem;
+  final String tag;
+  const ProdutoModel({
     required this.idProduto,
     required this.nome,
     required this.preco,
@@ -43,4 +44,7 @@ class ProdutoModel {
 
   factory ProdutoModel.fromJson(String source) =>
       ProdutoModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  List<Object?> get props => [nome];
 }

@@ -49,10 +49,9 @@ final class UsuarioBloc extends Bloc<IUsuarioEvent, IUsuarioState> {
     try {
       emit(InitialUsuarioState());
       final usuario = await getIt<SelectUsuairo>().verifyUsuario();
-
       emit(LoginUsuarioState());
-      if (usuario != null) {
-        emit(LoggedUsuarioState(usuario));
+      if (usuario.isNotEmpty) {
+        emit(LoggedUsuarioState(usuario.first));
       }
     } catch (e) {
       emit(ErrorUsuarioState(e.toString()));

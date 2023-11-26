@@ -45,7 +45,6 @@ final class LocalDatabase {
   String get _endereco => '''
     CREATE TABLE endereco (
       idEndereco INTEGER  PRIMARY KEY AUTOINCREMENT,
-      idUsuario TEXT,
       rua TEXT,
       cidade TEXT,
       estado TEXT,
@@ -67,7 +66,7 @@ final class LocalDatabase {
   ''';
   String get _pedidos => '''
     CREATE TABLE pedidos (
-      idPedido INTEGER  PRIMARY KEY AUTOINCREMENT,
+      idProduto INTEGER  PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       preco REAL,
       descricao TEXT,

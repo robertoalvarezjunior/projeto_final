@@ -35,10 +35,6 @@ class _HomeLayoutState extends State<HomeLayout> {
                   icon: Icon(Icons.person_2),
                   label: 'Usuário',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.menu_rounded),
-                  label: 'Pedidos',
-                ),
               ],
               currentIndex:
                   NastedControllerViewModel().calculateSelectedIndex(),

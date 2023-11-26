@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:routefly/routefly.dart';
 
 import 'package:projeto_final_faculdade/consts/produtos_const.dart';
 import 'package:projeto_final_faculdade/model/carrinho_model.dart';
+import 'package:projeto_final_faculdade/routes.dart';
 import 'package:projeto_final_faculdade/view_model/carrinho/carrinho_bloc.dart';
 
-class CarrinhoWidget extends StatelessWidget {
+class CarrinhoWidget extends StatefulWidget {
   const CarrinhoWidget({
     Key? key,
     required this.state,
@@ -15,19 +17,27 @@ class CarrinhoWidget extends StatelessWidget {
   final CarrinhoModel state;
 
   @override
+  State<CarrinhoWidget> createState() => _CarrinhoWidgetState();
+}
+
+class _CarrinhoWidgetState extends State<CarrinhoWidget> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              Routefly.pushNavigate(
+                  routePaths.home.carrinho.pedido.detalhesPedido);
+            },
             child: const Text('Finalizar'),
           ),
         ],
       ),
       body: ListView.separated(
         itemBuilder: (context, index) {
-          final carrinho = state.produto![index];
+          final carrinho = widget.state.produto![index];
           return ListTile(
             title: Text(carrinho.nome),
             subtitle: Column(
@@ -47,7 +57,7 @@ class CarrinhoWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         onTap: () => context.read<CarrinhoBloc>().add(
                               RemoverItemCarrinhoEvent(
-                                id: carrinho.idProduto,
+                                id: carrinho.idProduto!,
                               ),
                             ),
                         child: Padding(
@@ -71,7 +81,7 @@ class CarrinhoWidget extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) => const Divider(),
-        itemCount: state.produto!.length,
+        itemCount: widget.state.produto!.length,
       ),
     );
   }

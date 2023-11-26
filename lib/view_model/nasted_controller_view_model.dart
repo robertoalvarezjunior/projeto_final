@@ -14,9 +14,7 @@ final class NastedControllerViewModel {
     if (location.startsWith('/home/usuario')) {
       return 2;
     }
-    if (location.startsWith('/home/pedidos')) {
-      return 3;
-    }
+
     return 0;
   }
 
@@ -26,13 +24,10 @@ final class NastedControllerViewModel {
         Routefly.navigate(routePaths.home.produtos);
         break;
       case 1:
-        Routefly.navigate(routePaths.home.carrinho);
+        Routefly.navigate(routePaths.home.carrinho.path);
         break;
       case 2:
-        Routefly.navigate(routePaths.home.usuario);
-        break;
-      case 3:
-        Routefly.navigate(routePaths.home.pedidos);
+        Routefly.navigate(routePaths.home.usuario.path);
         break;
     }
   }
