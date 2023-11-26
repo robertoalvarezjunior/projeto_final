@@ -44,11 +44,58 @@ class _DetalhesPedidoPageState extends State<DetalhesPedidoPage> {
         actions: [
           TextButton(
               onPressed: () {
-                () async {
-                  await getIt<InsertPedido>().insertPedido(finalizarCarrinho);
-                }();
-
-                Routefly.pop(context);
+                showModalBottomSheet(
+                  context: context,
+                  showDragHandle: true,
+                  builder: (context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              () async {
+                                await getIt<InsertPedido>()
+                                    .insertPedido(finalizarCarrinho);
+                              }();
+                              Routefly.pop(context);
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text('Pix')],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              () async {
+                                await getIt<InsertPedido>()
+                                    .insertPedido(finalizarCarrinho);
+                              }();
+                              Routefly.pop(context);
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text('Débito')],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              () async {
+                                await getIt<InsertPedido>()
+                                    .insertPedido(finalizarCarrinho);
+                              }();
+                              Routefly.pop(context);
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text('Crédito')],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
               child: const Text('Finalizar Pedido')),
         ],

@@ -6,8 +6,9 @@ import 'app/home/carrinho/pedido/detalhes_pedido_page.dart' as a2;
 import 'app/home/home_layout.dart' as a3;
 import 'app/home/produtos/produtos_page.dart' as a4;
 import 'app/home/usuario/endereco/get_endereco_page.dart' as a5;
-import 'app/home/usuario/pedido/usuario_pedido_page.dart' as a6;
-import 'app/home/usuario/usuario_page.dart' as a7;
+import 'app/home/usuario/pedido/acompanhar_pedido_page.dart' as a6;
+import 'app/home/usuario/pedido/usuario_pedido_page.dart' as a7;
+import 'app/home/usuario/usuario_page.dart' as a8;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -53,16 +54,26 @@ List<RouteEntity> get routes => [
     routeBuilder: a5.routeBuilder,
   ),
   RouteEntity(
+    key: '/home/usuario/pedido/acompanhar_pedido',
+    parent: '/home',
+    uri: Uri.parse('/home/usuario/pedido/acompanhar_pedido'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a6.AcompanharPedidoPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/home/usuario/pedido/usuario_pedido',
     parent: '/home',
     uri: Uri.parse('/home/usuario/pedido/usuario_pedido'),
-    routeBuilder: a6.routeBuilder,
+    routeBuilder: a7.routeBuilder,
   ),
   RouteEntity(
     key: '/home/usuario',
     parent: '/home',
     uri: Uri.parse('/home/usuario'),
-    routeBuilder: a7.routeBuilder,
+    routeBuilder: a8.routeBuilder,
   ),
 ];
 
@@ -86,6 +97,7 @@ const routePaths = (
       ),
       pedido: (
         path: '/home/usuario/pedido',
+        acompanharPedido: '/home/usuario/pedido/acompanhar_pedido',
         usuarioPedido: '/home/usuario/pedido/usuario_pedido',
       ),
     ),

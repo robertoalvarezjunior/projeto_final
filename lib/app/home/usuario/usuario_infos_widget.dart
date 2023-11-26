@@ -49,6 +49,16 @@ class _UsuarioInfosWidgetState extends State<UsuarioInfosWidget> {
           GestureDetector(
             onTap: () {
               Routefly.pushNavigate(
+                  routePaths.home.usuario.pedido.acompanharPedido);
+            },
+            child: const ListTile(
+              title: Text('Acompanhar pedido'),
+              leading: Icon(Icons.arrow_right),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Routefly.pushNavigate(
                   routePaths.home.usuario.pedido.usuarioPedido);
             },
             child: const ListTile(
